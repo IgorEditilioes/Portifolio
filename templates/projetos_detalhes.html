@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Projetos{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <h1 class="mb-3" style="text-align:center">{{ projeto.titulo }}</h1>
+    <p class="lead" style="text-align:justify">{{ projeto.descricao_detalhada }}</p>
+    <hr>
+    <h3 style="text-align:center">Tecnologias Utilizadas</h3>
+    <div class="mb-3" style="text-align:center">
+        {% for tecnologia in projeto.tecnologias.split %}
+            <span class="badge bg-info text-dark me-1">{{ tecnologia }}</span>
+        {% endfor %}
+    </div>
+    <hr>
+
+    <h3 class="mt-4" style="text-align:center">Galeria do Projeto</h3>
+    <div class="row g-3">
+        {% for imagem in projeto.imagens.all %}
+            <img src="{{ imagem.imagem.url }}" alt="Imagem do projeto">
+        {% endfor %}
+    </div>
+
+    {% if projeto.video_url %}
+    <hr>
+    <h3 class="mt-4">Vídeo de Demonstração</h3>
+    <div class="ratio ratio-16x9">
+        <iframe src="{{ projeto.video_url }}" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+
+    {% if projeto.link %}
+    <hr>
+    <a class="btn btn-dark mt-4" href="{{ projeto.link }}" target="_blank">Ver no GitHub ou online</a>
+    {% endif %}
+
+</div>
+{% endblock %}

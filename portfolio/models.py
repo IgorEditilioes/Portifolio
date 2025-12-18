@@ -15,7 +15,8 @@ def upload_imagem_secundaria(instance, filename):
 
 class Projeto(models.Model):
     titulo = models.CharField(max_length=100)
-    descricao = models.TextField()
+    descricao_curta = models.CharField(max_length=200)
+    descricao_detalhada = models.TextField()
     tecnologias = models.CharField(max_length=200)
     link = models.URLField(blank=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
